@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="nrlladder_erpModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Ladder">
+    <Key>
+      <PropertyRef Name="PKFK_TeamID" />
+    </Key>
+    <Property Name="PKFK_TeamID" Type="int" Nullable="false" />
+    <Property Name="Position" Type="int" />
+    <Property Name="Ladder_Dif" Type="int" />
+  </EntityType>
+  <EntityType Name="Season">
+    <Key>
+      <PropertyRef Name="PKFK_TeamID" />
+    </Key>
+    <Property Name="PKFK_TeamID" Type="int" Nullable="false" />
+    <Property Name="Season_For" Type="int" />
+    <Property Name="Season_Against" Type="int" />
+  </EntityType>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="PK_TeamId" />
+    </Key>
+    <Property Name="PK_TeamId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="30" />
+    <Property Name="Played" Type="int" />
+    <Property Name="Points" Type="int" />
+    <Property Name="Wins" Type="int" />
+    <Property Name="Draw" Type="int" />
+    <Property Name="Lost" Type="int" />
+    <Property Name="Byes" Type="int" />
+  </EntityType>
+  <Association Name="FK__Ladder__PKFK_Tea__29572725">
+    <End Role="Team" Type="Self.Team" Multiplicity="1" />
+    <End Role="Ladder" Type="Self.Ladder" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="PK_TeamId" />
+      </Principal>
+      <Dependent Role="Ladder">
+        <PropertyRef Name="PKFK_TeamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Season__PKFK_Tea__267ABA7A">
+    <End Role="Team" Type="Self.Team" Multiplicity="1" />
+    <End Role="Season" Type="Self.Season" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="PK_TeamId" />
+      </Principal>
+      <Dependent Role="Season">
+        <PropertyRef Name="PKFK_TeamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="nrlladder_erpModelStoreContainer">
+    <EntitySet Name="Ladder" EntityType="Self.Ladder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Season" EntityType="Self.Season" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Ladder__PKFK_Tea__29572725" Association="Self.FK__Ladder__PKFK_Tea__29572725">
+      <End Role="Team" EntitySet="Team" />
+      <End Role="Ladder" EntitySet="Ladder" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Season__PKFK_Tea__267ABA7A" Association="Self.FK__Season__PKFK_Tea__267ABA7A">
+      <End Role="Team" EntitySet="Team" />
+      <End Role="Season" EntitySet="Season" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="nrlladder_erpModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ladder">
+          <Key>
+            <PropertyRef Name="PKFK_TeamID" />
+          </Key>
+          <Property Name="PKFK_TeamID" Type="int" Nullable="false" />
+          <Property Name="Position" Type="int" />
+          <Property Name="Ladder_Dif" Type="int" />
+        </EntityType>
+        <EntityType Name="Season">
+          <Key>
+            <PropertyRef Name="PKFK_TeamID" />
+          </Key>
+          <Property Name="PKFK_TeamID" Type="int" Nullable="false" />
+          <Property Name="Season_For" Type="int" />
+          <Property Name="Season_Against" Type="int" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="PK_TeamId" />
+          </Key>
+          <Property Name="PK_TeamId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="Played" Type="int" />
+          <Property Name="Points" Type="int" />
+          <Property Name="Wins" Type="int" />
+          <Property Name="Draw" Type="int" />
+          <Property Name="Lost" Type="int" />
+          <Property Name="Byes" Type="int" />
+        </EntityType>
+        <Association Name="FK__Ladder__PKFK_Tea__29572725">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Ladder" Type="Self.Ladder" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="PK_TeamId" />
+            </Principal>
+            <Dependent Role="Ladder">
+              <PropertyRef Name="PKFK_TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Season__PKFK_Tea__267ABA7A">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Season" Type="Self.Season" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="PK_TeamId" />
+            </Principal>
+            <Dependent Role="Season">
+              <PropertyRef Name="PKFK_TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="nrlladder_erpModelStoreContainer">
+          <EntitySet Name="Ladder" EntityType="Self.Ladder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Season" EntityType="Self.Season" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Ladder__PKFK_Tea__29572725" Association="Self.FK__Ladder__PKFK_Tea__29572725">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Ladder" EntitySet="Ladder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Season__PKFK_Tea__267ABA7A" Association="Self.FK__Season__PKFK_Tea__267ABA7A">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Season" EntitySet="Season" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="nrlladder_erpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ladder">
+          <Key>
+            <PropertyRef Name="PKFK_TeamID" />
+          </Key>
+          <Property Name="PKFK_TeamID" Type="Int32" Nullable="false" />
+          <Property Name="Position" Type="Int32" />
+          <Property Name="Ladder_Dif" Type="Int32" />
+          <NavigationProperty Name="Team" Relationship="Self.FK__Ladder__PKFK_Tea__29572725" FromRole="Ladder" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Season">
+          <Key>
+            <PropertyRef Name="PKFK_TeamID" />
+          </Key>
+          <Property Name="PKFK_TeamID" Type="Int32" Nullable="false" />
+          <Property Name="Season_For" Type="Int32" />
+          <Property Name="Season_Against" Type="Int32" />
+          <NavigationProperty Name="Team" Relationship="Self.FK__Season__PKFK_Tea__267ABA7A" FromRole="Season" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="PK_TeamId" />
+          </Key>
+          <Property Name="PK_TeamId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Played" Type="Int32" />
+          <Property Name="Points" Type="Int32" />
+          <Property Name="Wins" Type="Int32" />
+          <Property Name="Draw" Type="Int32" />
+          <Property Name="Lost" Type="Int32" />
+          <Property Name="Byes" Type="Int32" />
+          <NavigationProperty Name="Ladder" Relationship="Self.FK__Ladder__PKFK_Tea__29572725" FromRole="Team" ToRole="Ladder" />
+          <NavigationProperty Name="Season" Relationship="Self.FK__Season__PKFK_Tea__267ABA7A" FromRole="Team" ToRole="Season" />
+        </EntityType>
+        <Association Name="FK__Ladder__PKFK_Tea__29572725">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Ladder" Type="Self.Ladder" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="PK_TeamId" />
+            </Principal>
+            <Dependent Role="Ladder">
+              <PropertyRef Name="PKFK_TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Season__PKFK_Tea__267ABA7A">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Season" Type="Self.Season" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="PK_TeamId" />
+            </Principal>
+            <Dependent Role="Season">
+              <PropertyRef Name="PKFK_TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="nrlladder_erpEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ladders" EntityType="Self.Ladder" />
+          <EntitySet Name="Seasons" EntityType="Self.Season" />
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+          <AssociationSet Name="FK__Ladder__PKFK_Tea__29572725" Association="Self.FK__Ladder__PKFK_Tea__29572725">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Ladder" EntitySet="Ladders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Season__PKFK_Tea__267ABA7A" Association="Self.FK__Season__PKFK_Tea__267ABA7A">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Season" EntitySet="Seasons" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="nrlladder_erpModelStoreContainer" CdmEntityContainer="nrlladder_erpEntities">
+          <EntitySetMapping Name="Ladders">
+            <EntityTypeMapping TypeName="nrlladder_erpModel.Ladder">
+              <MappingFragment StoreEntitySet="Ladder">
+                <ScalarProperty Name="PKFK_TeamID" ColumnName="PKFK_TeamID" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Ladder_Dif" ColumnName="Ladder_Dif" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seasons">
+            <EntityTypeMapping TypeName="nrlladder_erpModel.Season">
+              <MappingFragment StoreEntitySet="Season">
+                <ScalarProperty Name="PKFK_TeamID" ColumnName="PKFK_TeamID" />
+                <ScalarProperty Name="Season_For" ColumnName="Season_For" />
+                <ScalarProperty Name="Season_Against" ColumnName="Season_Against" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="nrlladder_erpModel.Team">
+              <MappingFragment StoreEntitySet="Team">
+                <ScalarProperty Name="PK_TeamId" ColumnName="PK_TeamId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Played" ColumnName="Played" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="Wins" ColumnName="Wins" />
+                <ScalarProperty Name="Draw" ColumnName="Draw" />
+                <ScalarProperty Name="Lost" ColumnName="Lost" />
+                <ScalarProperty Name="Byes" ColumnName="Byes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

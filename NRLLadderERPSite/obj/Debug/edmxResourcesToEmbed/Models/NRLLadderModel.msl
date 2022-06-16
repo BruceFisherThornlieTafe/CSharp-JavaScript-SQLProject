@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="nrlladder_erpModelStoreContainer" CdmEntityContainer="nrlladder_erpEntities">
+    <EntitySetMapping Name="Ladders">
+      <EntityTypeMapping TypeName="nrlladder_erpModel.Ladder">
+        <MappingFragment StoreEntitySet="Ladder">
+          <ScalarProperty Name="PKFK_TeamID" ColumnName="PKFK_TeamID" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Ladder_Dif" ColumnName="Ladder_Dif" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seasons">
+      <EntityTypeMapping TypeName="nrlladder_erpModel.Season">
+        <MappingFragment StoreEntitySet="Season">
+          <ScalarProperty Name="PKFK_TeamID" ColumnName="PKFK_TeamID" />
+          <ScalarProperty Name="Season_For" ColumnName="Season_For" />
+          <ScalarProperty Name="Season_Against" ColumnName="Season_Against" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teams">
+      <EntityTypeMapping TypeName="nrlladder_erpModel.Team">
+        <MappingFragment StoreEntitySet="Team">
+          <ScalarProperty Name="PK_TeamId" ColumnName="PK_TeamId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Played" ColumnName="Played" />
+          <ScalarProperty Name="Points" ColumnName="Points" />
+          <ScalarProperty Name="Wins" ColumnName="Wins" />
+          <ScalarProperty Name="Draw" ColumnName="Draw" />
+          <ScalarProperty Name="Lost" ColumnName="Lost" />
+          <ScalarProperty Name="Byes" ColumnName="Byes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

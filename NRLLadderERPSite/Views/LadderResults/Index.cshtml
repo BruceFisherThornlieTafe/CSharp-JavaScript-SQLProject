@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Ladder Results</h2>
+<hr />
+<table class="table">
+    <tr>
+        <th>Position</th>
+        <th>Name</th>
+        <th>Played</th>
+        <th>Points</th>
+        <th>Wins</th>
+        <th>Drawn</th>
+        <th>Lost</th>
+        <th>Byes</th>
+        <th>For</th>
+        <th>Against</th>
+        <th>Dif</th>
+    </tr>
+    @foreach(var item in ViewData["jointables"] as IEnumerable<NRLLadderERPSite.Models.LadderResults>)
+    {
+        <tr>
+            <td>@item.ladderlist.Position</td>
+            <td>@item.teamlist.Name</td>
+            <td>@item.teamlist.Played</td>
+            <td>@item.teamlist.Points</td>
+            <td>@item.teamlist.Wins</td>
+            <td>@item.teamlist.Draw</td>
+            <td>@item.teamlist.Lost</td>
+            <td>@item.teamlist.Byes</td>
+            <td>@item.seasonlist.Season_For</td>
+            <td>@item.seasonlist.Season_Against</td>
+            <td>@item.ladderlist.Ladder_Dif</td>
+        </tr>
+    }
+</table>

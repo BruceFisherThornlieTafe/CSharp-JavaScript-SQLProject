@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>NRL Ladder</h1>
+    <p class="lead">NRL Ladder and Links.</p>
+    <!--<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>-->
+</div>
+
+<div>
+    <h2>NRL Database Entry</h2>
+    @Html.ActionLink("Team Data Entry", "Index", "Teams")<br />
+    @Html.ActionLink("Season Data Entry", "Index", "Seasons")<br />
+    @Html.ActionLink("Ladder Data Entry", "Index", "Ladders")<br />
+</div>
+
+<div>
+    <h2>NRL Ladder Results</h2>
+    @Html.ActionLink("Ladder Results", "Index", "LadderResults")<br />
+</div>
+
+<div>
+    <h2>Team Brisbane Broncos</h2>
+    <p class="lead">Brisbane Broncos Link</p>
+    <p><a href="https://www.nrl.com/clubs/brisbane-broncos/" class="btn btn-primary btn-lg">Brisbane Broncos &raquo;></a></p>
+</div>
+
+<div>
+    <h2>Team Brisbane Broncos Player</h2>
+    <p class="lead">Corey Oates Link</p>
+    <p><a href="https://www.nrl.com/players/nrl-premiership/broncos/corey-oates/" class="btn btn-primary btn-lg">Corey Oates &raquo;></a></p>
+</div>
